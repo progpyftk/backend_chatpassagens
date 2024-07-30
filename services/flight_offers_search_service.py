@@ -1,8 +1,9 @@
 # services/flight_offers_search_service.py
 import requests
 from amadeus_auth_service import AmadeusAuthService
-from models.flight_offers_models import FlightOffersResponse
+from models.flight_offers_models import FlightOffersSearchResponse
 import logging
+import json
 
 
 class FlightOffersSearchService:
@@ -47,17 +48,21 @@ class FlightOffersSearchService:
             response_data = response.json()
             self.logger.info(f"Request successful: {response_data}")
             # Usando Pydantic para validar e acessar os dados
-            flight_offers = FlightOffersResponse(**response_data)
-            # Convertendo o modelo Pydantic para dicionário
-            flight_offers_dict = flight_offers.dict()
+            try:
+                flight_offers = FlightOffersSearchResponse(**response_data)
+                # Convertendo o modelo Pydantic para dicionário
+                flight_offers_dict = flight_offers.dict()
 
-            # Convertendo o dicionário para JSON formatado
-            flight_offers_json = json.dumps(flight_offers_dict, indent=4)
+                # Convertendo o dicionário para JSON formatado
+                flight_offers_json = json.dumps(flight_offers_dict, indent=4)
 
-            # Registrando a saída JSON
-            self.logger.info(f"-----------------------------------------")
-            self.logger.info(f"Flight offers data: {flight_offers_json}")
-            return flight_offers
+                # Registrando a saída JSON
+                self.logger.info("-----------------------------------------")
+                self.logger.info(f"Flight offers data: {flight_offers_json}")
+                return flight_offers
+            except Exception as e:
+                self.logger.error(f"Validation error: {str(e)}")
+                raise Exception(f"Validation error: {str(e)}")
         else:
             error_message = f"Erro: {response.status_code}, {response.text}"
             self.logger.error(error_message)
@@ -68,22 +73,36 @@ if __name__ == "__main__":
     try:
         # Exemplo de busca de voos
         origin = 'JFK'  # Aeroporto de origem
-        destination = 'LAX'  # Aeroporto de destino
+        destination = 'GRU'  # Aeroporto de destino
         departure_date = '2024-08-15'  # Data de partida
         return_date = '2024-08-20'  # (Opcional) Data de retorno
 
         # Chamando o método de busca
         flight_offers = flight_service.search_flights(origin, destination, departure_date, return_date, adults=1)
         
-        print(flight_offers)
-        # Exibindo os resultados
-        for offer in flight_offers['data']:
-            print(f"Preço: {offer['price']['total']} {offer['price']['currency']}")
-            print(f"Origem: {offer['origin']['iataCode']}")
-            print(f"Destino: {offer['destination']['iataCode']}")
-            print(f"Partida: {offer['departureDate']}")
-            print(f"Retorno: {offer.get('returnDate', 'N/A')}")
+        for offer in flight_offers.data:
+            print(f"Preço: {offer.price.total} {offer.price.currency}")
+            print("Itinerários:")
+            for idx, itinerary in enumerate(offer.itineraries):
+                tipo_voo = "Voo de Ida" if idx == 0 else "Voo de Volta"
+                print(f" {tipo_voo}:")
+                for seg_idx, segment in enumerate(itinerary.segments):
+                    escala = "sem escala" if len(itinerary.segments) == 1 else "com escala"
+                    print(f"  Segmento {seg_idx + 1}:")
+                    print(f"   Origem: {segment.departure.iataCode}")
+                    print(f"   Destino: {segment.arrival.iataCode}")
+                    print(f"   Partida: {segment.departure.at}")
+                    print(f"   Chegada: {segment.arrival.at}")
+                    print(f"   Escala: {escala}")
+                    print("   -----")
+                # Informações de bagagem
+                for fare_detail in offer.travelerPricings[0].fareDetailsBySegment:
+                    if fare_detail.segmentId == segment.id:
+                        if fare_detail.includedCheckedBags:
+                            included_bags = fare_detail.includedCheckedBags.quantity
+                        else:
+                            included_bags = 0
+                        print(f"   Bagagem incluída: {included_bags} peças")
             print("-----")
     except Exception as e:
         print(f"Ocorreu um erro: {e}")
-    

@@ -1,0 +1,141 @@
+{
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-07-31",
+            "lastTicketingDateTime": "2024-07-31",
+            "numberOfBookableSeats": 5,
+            "itineraries": [
+                {
+                    "duration": "PT9H35M",
+                    "segments": [
+                        {
+                            "id": "14",
+                            "departure": {
+                                "iataCode": "JFK",
+                                "terminal": "4",
+                                "at": "2024-08-15T19:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-08-16T05:35:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8181",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H35M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                },
+                {
+                    "duration": "PT9H45M",
+                    "segments": [
+                        {
+                            "id": "60",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-08-20T22:50:00"
+                            },
+                            "arrival": {
+                                "iataCode": "JFK",
+                                "terminal": "4",
+                                "at": "2024-08-21T07:35:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8180",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H45M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "662.77",
+                "base": "563.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "662.77",
+                "additionalServices": [
+                    {
+                        "amount": "129.08",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "662.77",
+                        "base": "563.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "14",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "QLTSL16W",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "Q",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        },
+                        {
+                            "segmentId": "60",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "QLTSL16W",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "Q",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
