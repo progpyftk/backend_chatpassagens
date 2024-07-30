@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "backend-copiloto-chatbot"
+name = "backend-chatpassagens"
 version = "0.1.0"
 description = ""
 authors = ["Lorenzo Simonassi <lorenzocabrini.prestserv@petrobras.com.br>"]
@@ -118,6 +118,10 @@ aiosqlite = "^0.20.0"
 bs4 = "^0.0.2"
 lark = "^1.1.9"
 pytest = "^8.3.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
