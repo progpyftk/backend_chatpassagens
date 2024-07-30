@@ -1,6 +1,7 @@
 # tests/test_amadeus_auth.py
 import pytest
-from services.amadeus_auth import AmadeusAuthService
+from services.amadeus_auth_service import AmadeusAuthService
+import pprint
 
 @pytest.fixture
 def auth_service():
@@ -8,6 +9,8 @@ def auth_service():
 
 def test_get_access_token(auth_service):
     token = auth_service.get_access_token()
+    print('Token:', token)
+    print('Token Type:', type(token))
     assert token is not None
     assert isinstance(token, str)
 
@@ -17,6 +20,7 @@ def test_is_token_expired(auth_service):
 
 def test_get_full_response(auth_service):
     response = auth_service.get_full_response()
+    pprint.pprint(response)
     assert response is not None
     assert isinstance(response, dict)
     assert "access_token" in response

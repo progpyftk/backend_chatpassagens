@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+db.sqlite3
+
+# Environment
+.env
+
+# Pytest
+.cache/
+*.pytest_cache
+
+# Pycharm/VSCode
+.idea/
+.vscode/
+
+# Poetry
+poetry.lock
+
+# Arquivos temporários
+estrutura_do_projeto.txt
