@@ -106,7 +106,7 @@ class AmadeusFlightOffersSearchService:
         
 # Usage example:
 if __name__ == "__main__":
-    flight_service = FlightOffersSearchService()
+    flight_service = AmadeusFlightOffersSearchService()
     try:
         # Exemplo de busca de voos
         origin = 'JFK'  # Aeroporto de origem
