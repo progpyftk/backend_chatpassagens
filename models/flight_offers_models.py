@@ -1,8 +1,5 @@
-from pydantic import BaseModel, Field, validator
-from typing import List, Optional, Union
-
-from pydantic import BaseModel, Field, validator
-from typing import List, Optional, Union
+from pydantic import BaseModel, Field, field_validator, model_validator
+from typing import List, Optional
 
 class FlightEndPoint(BaseModel):
     iataCode: str
@@ -96,9 +93,8 @@ class FlightOffersSearchResponse(BaseModel):
     meta: CollectionMeta
     data: List[FlightOffer]
 
-    @validator('data')
+    @field_validator('data')
     def validate_data(cls, v):
         if not v:
             raise ValueError("Data field cannot be empty")
         return v
-
