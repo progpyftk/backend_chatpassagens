@@ -15,7 +15,7 @@ class FlightOffersSearchService:
                             format='%(asctime)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger()
 
-    def search_flights(self, origin, destination, departure_date, return_date=None, adults=1, max_price=None):
+    def search_flights(self, origin, destination, departure_date, return_date=None, adults=1, max_price=None, non_stop=None, one_way=False, duration=None, view_by=None):
         """
         Faz uma chamada à API de busca de ofertas de voo.
 
@@ -25,18 +25,29 @@ class FlightOffersSearchService:
         :param return_date: (Opcional) Data de retorno no formato YYYY-MM-DD
         :param adults: Número de adultos
         :param max_price: (Opcional) Preço máximo para os voos
+        :param non_stop: (Opcional) Filtra por voos diretos ('true' para apenas diretos, 'false' para incluir com escalas)
+        :param one_way: (Opcional) Define se a busca é apenas para ida
+        :param duration: (Opcional) Duração da viagem em dias (para ida e volta)
+        :param view_by: (Opcional) Define a visualização dos resultados (COUNTRY, DATE, DESTINATION, DURATION, WEEK)
         :return: Dados da resposta em formato JSON
         """
         params = {
             'originLocationCode': origin,
             'destinationLocationCode': destination,
             'departureDate': departure_date,
-            'adults': adults
+            'adults': adults,
+            'oneWay': str(one_way).lower()  # Converte para 'true' ou 'false'
         }
         if return_date:
             params['returnDate'] = return_date
         if max_price:
             params['maxPrice'] = max_price
+        if non_stop is not None:
+            params['nonStop'] = 'true' if non_stop else 'false'
+        if duration:
+            params['duration'] = duration
+        if view_by:
+            params['viewBy'] = view_by
 
         headers = {
             'Authorization': self.access_token
@@ -47,18 +58,8 @@ class FlightOffersSearchService:
         if response.status_code == 200:
             response_data = response.json()
             self.logger.info(f"Request successful: {response_data}")
-            # Usando Pydantic para validar e acessar os dados
             try:
                 flight_offers = FlightOffersSearchResponse(**response_data)
-                # Convertendo o modelo Pydantic para dicionário
-                flight_offers_dict = flight_offers.dict()
-
-                # Convertendo o dicionário para JSON formatado
-                flight_offers_json = json.dumps(flight_offers_dict, indent=4)
-
-                # Registrando a saída JSON
-                self.logger.info("-----------------------------------------")
-                self.logger.info(f"Flight offers data: {flight_offers_json}")
                 return flight_offers
             except Exception as e:
                 self.logger.error(f"Validation error: {str(e)}")
