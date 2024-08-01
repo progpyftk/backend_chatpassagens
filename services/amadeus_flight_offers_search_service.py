@@ -62,6 +62,10 @@ class AmadeusFlightOffersSearchService:
         if travel_class:
             params['travelClass'] = travel_class
         if max_price:
+            try:
+                max_price = int(max_price)
+            except ValueError:
+                raise ValueError(f"max_price must be a number, got {max_price}")
             params['maxPrice'] = max_price
         if non_stop is not None:
             params['nonStop'] = 'true' if non_stop else 'false'
