@@ -213,9 +213,10 @@ def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
             return state  # Se não houver chamadas de ferramentas, retorne o estado atual.
 
         tool_call_id = state["messages"][-1].tool_calls[0]["id"]
-
-        return {
-            "messages": [
+        print("Estou aqui !!!")
+        print(f"---\n state['messages'][-1]: {state['messages'][-1]} \n----")
+        print(f"---\n tool_call_id: {tool_call_id} \n----")
+        result = {"messages": [
                 ToolMessage(
                     content=f"The assistant is now the {assistant_name}. Reflect on the above conversation between the host assistant and the user."
                     f" The user's intent is unsatisfied. Use the provided tools to assist the user. Remember, you are {assistant_name},"
@@ -225,8 +226,12 @@ def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
                     tool_call_id=tool_call_id,
                 )
             ],
-            "dialog_state": new_dialog_state,
-        }
+            "dialog_state": new_dialog_state,}
+        print("Vou printar o resultado")
+        print(result)
+        return result
+            
+        
 
     return entry_node
 
@@ -313,36 +318,22 @@ def run_chatbot():
             return dialog_state[-1]
         
     
-    #  A nossa primeira interação com o usário deve ser justamente o assistente primário, que irá avaliar a pergunta do usuário 
-    #  e decidir se deve delegar a tarefa para um assistente especializado ou se deve responder diretamente ao usuário. Também poderá pedir mais informações ao usuário.
-
-
-
-
     builder = StateGraph(State)
     
-
+    builder.add_node("primary_assistant", Assistant(assistant_runnable))
+    builder.add_node("primary_assistant_tools", create_tool_node_with_fallback(primary_assistant_tools))
     builder.add_node("enter_flight_search_assistant", create_entry_node("Flight Search Assistant", "flight_search_assistant"))
     builder.add_node("flight_search_assistant", Assistant(flight_search_assistant_runnable))
     builder.add_node("flight_search_tools", create_tool_node_with_fallback(flight_search_assistant_tools))
     builder.add_node("leave_skill", pop_dialog_state)
     
     
-    # builder.set_entry_point("enter_flight_search_assistant")
     builder.add_edge(START, "primary_assistant")
     builder.add_conditional_edges("primary_assistant", route_to_workflow)
     builder.add_edge("enter_flight_search_assistant", "flight_search_assistant")
     builder.add_edge("flight_search_tools", "flight_search_assistant")
     builder.add_conditional_edges("flight_search_tools", route_search_flight)
-   
     builder.add_edge("leave_skill", "primary_assistant")
-    # Criação do assistente primário
-    builder.add_node("primary_assistant", Assistant(assistant_runnable))
-    builder.add_node(
-        "primary_assistant_tools", create_tool_node_with_fallback(primary_assistant_tools)
-    )
-    # The assistant can route to one of the delegated assistants,
-    # directly use a tool, or directly respond to the user
     builder.add_conditional_edges(
         "primary_assistant",
         route_primary_assistant,
@@ -353,7 +344,6 @@ def run_chatbot():
         },
     )
     builder.add_edge("primary_assistant_tools", "primary_assistant")
-    builder.add_conditional_edges("primary_assistant", route_to_workflow)
 
     # Compile graph
     memory = SqliteSaver.from_conn_string(":memory:")
