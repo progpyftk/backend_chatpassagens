@@ -34,6 +34,7 @@ def search_amadeus_flights(
     - currency_code (str, opcional): Código da moeda preferida (ex: 'USD').
     - max_results (int, opcional): Número máximo de resultados a retornar (padrão: 5).
     """
+    print("Executando a ferramenta 'search_amadeus_flights")
     service = AmadeusFlightOffersSearchService()
     return service.search_flights(
         origin, destination, departure_date, return_date, adults, 
@@ -41,3 +42,14 @@ def search_amadeus_flights(
         included_airline_codes, excluded_airline_codes, currency_code, 
         max_results
     )
+
+@tool
+def tourism_info_tool(
+    local: str,
+) -> dict:
+    """
+    Busca locais sobre turismo 
+    """
+    print("Executando a ferramenta 'search_amadeus_flights")
+
+    return "Parábens"
