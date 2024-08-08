@@ -16,22 +16,21 @@ from IPython.display import Image, display
 from dotenv import load_dotenv
 import os
 from langchain_core.pydantic_v1 import BaseModel, Field
-
 from typing import Callable
-
 from langchain_core.messages import ToolMessage
 from typing import Literal
-
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import StateGraph
 from langgraph.prebuilt import tools_condition
-
 import shutil
 import uuid
+from langchain_core.tools import tool
+from langchain_community.tools.tavily_search import TavilySearchResults
+
 
 load_dotenv()  # Carrega as variáveis de ambiente do arquivo .env
 
-llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o")
+llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'),model="gpt-3.5-turbo-0125", temperature=0)
 
 def update_dialog_stack(left: list[str], right: Optional[str]) -> list[str]:
     """Push or pop the state."""
@@ -41,29 +40,27 @@ def update_dialog_stack(left: list[str], right: Optional[str]) -> list[str]:
         return left[:-1]
     return left + [right]
 
+class ToFlightSearchAssistant(BaseModel):
+    """Transfers work to a specialized assistant to look up at the internet about nature and other stuff."""
+    
+    request: str = Field(
+        description="Any necessary followup questions to help to find more info."
+    )
+    
+
 class State(TypedDict):
     messages: Annotated[list[AnyMessage], add_messages]
     user_info: str
     dialog_state: Annotated[
         list[
             Literal[
-                "assistant",
+                "primary_assistant",
                 "flight_search_assistant",
                 "inspiration_tourism",
             ]
         ],
         update_dialog_stack,
     ]
-   
-# Vamos criar um assistente para cada tipo de interesse do usuário
-# 1. Assistente de voos 
-# 2. Assistente de inspiração de voo
-# 3. Assistente de turismo
-# 4. a "primary assistant" to route between these
-
-# Definição dos runnables de cada assistente especializado
-# Cada um desses runnables possui seu próprio prompt, LLM, e schema para tools
-# Cada um deles pode chamar a tool "CompleteOrScalate" para indicar se o fluxo de controle deve voltar ao assistente principal ou se deve continuar com a ferramenta atual
 
 
 class Assistant:
@@ -73,18 +70,19 @@ class Assistant:
     def __call__(self, state: State, config: RunnableConfig):
         while True:
             result = self.runnable.invoke(state)
-            #  se o assistente não tiver ferramentas ou informações para responder à pergunta específica, 
-            #  ele pode não conseguir fornecer uma resposta útil. O design do método garante que o assistente 
-            # tente várias vezes até obter uma resposta válida ou até que o sistema determine que não pode ajudar com a consulta específica.
-            if not result.tool_calls and (                                                 # se não houver chamadas de ferramenta
-                not result.content                                                         # ou se não houver conteúdo
-                or isinstance(result.content, list) and not result.content[0].get("text")  # ou se o conteúdo for uma lista e se for una lista se o primeiro item não tiver texto 
+            print("Printanto o resultado da chamada do assistente")
+            print(state)
+            if not result.tool_calls and (
+                not result.content
+                or isinstance(result.content, list)
+                and not result.content[0].get("text")
             ):
-                messages = state["messages"] + [("user", "Respond with a real output.")] # cria uma nova mensagem do usuário com o texto "Respond with a real output."
-                state = {**state, "messages": messages}                                  # atualiza o estado com a nova mensagem, adicionando-a à lista de mensagens do state   
+                messages = state["messages"] + [("user", "Respond with a real output.")]
+                state = {**state, "messages": messages}
             else:
                 break
         return {"messages": result}
+    
     
 class CompleteOrEscalate(BaseModel): # https://python.langchain.com/v0.2/docs/how_to/tool_calling/#pydantic-class
     """A tool to mark the current task as completed and/or to escalate control of the dialog to the main assistant,
@@ -130,7 +128,9 @@ flight_search_assistant_prompt = ChatPromptTemplate.from_messages(
         ]
     ).partial(time=datetime.now())
 
-flight_search_assistant_tools = [search_amadeus_flights, CompleteOrEscalate]
+tavily_tool = TavilySearchResults(max_results=5)
+
+flight_search_assistant_tools = [tavily_tool, CompleteOrEscalate]
 flight_search_assistant_runnable = flight_search_assistant_prompt | llm.bind_tools(flight_search_assistant_tools)
 
 # Tourism Assistent
@@ -157,27 +157,7 @@ tourism_assistant_runnable = tourism_assistant_prompt | llm.bind_tools(tourism_a
 
 # Primary Assistant
 # Adicione a ToolMessage dentro da classe ToFlightSearchAssistant
-class ToFlightSearchAssistant(BaseModel):
-    """Transfers work to a specialized assistant to handle flight search."""
-    
-    request: str = Field(
-        description="Any necessary followup questions the update flight assistant should clarify before proceeding."
-    )
-    
-    class ToolMessage(BaseModel):
-        tool_call_id: str
-        content: str
 
-    def to_tool_message(self, tool_call_id: str) -> dict:
-        return {
-            "messages": [
-                {
-                    "role": "tool",
-                    "content": self.request,
-                    "tool_call_id": tool_call_id,
-                }
-            ]
-        }
 
 class ToTourismAssistant(BaseModel):
     """Transfers work to a specialized assistant to handle tourism hints and information."""
@@ -208,48 +188,36 @@ primary_assistant_tools = [ToFlightSearchAssistant]
 
 assistant_runnable = primary_assistant_prompt | llm.bind_tools(primary_assistant_tools)
 
-# A função entry_node retorna um dicionário contendo uma mensagem ToolMessage que informa ao usuário q
-# ue o assistente especializado está no comando e que ele deve refletir sobre a conversa anterior entre o assistente principal e o usuário. 
-# Create a function to make an "entry" node for each workflow, stating "the current assistant ix assistant_name".
-# O parâmetro state é passado para a função interna entry_node quando o grafo de estado está sendo executado. Vamos detalhar como isso acontece.
-# A função create_entry_node retorna a função entry_node. Esta função é adicionada ao grafo de estado como um nó. Quando o grafo de estado é executado, 
-# ele invoca a função entry_node, passando o estado atual do grafo como argumento.
-# builder.add_node(enter_flight_search_assistant", create_entry_node("Flight Search Assistant", "flight_search_assistant"))
-# A ToolMessage irá dizer qual assistente está no comando.
 def create_entry_node(assistant_name: str, new_dialog_state: str) -> Callable:
     def entry_node(state: State) -> dict:
-        print(f"--- entry_node() interna----")
-        print(f"---Entering {assistant_name} ----")
-        print(f"---\n state: {state} \n----")
-        print(" \n\n------------------------------------- \n\n")
-        pprint.pprint(state["messages"][0])
-        print(" \n\n------------------------------------- \n\n")
+                  
         tool_call_id = state["messages"][-1].tool_calls[0]["id"]
-        print("Estou aqui !!!")
-        print(f"---\n state['messages'][-1]: {state['messages'][-1]} \n----")
-        print(f"---\n tool_call_id: {tool_call_id} \n----")
-
-        # Gera a mensagem de ferramenta após a entrada no assistente especializado
-        tool_message = {
+        print("\n --- create_entry_node --- \n")  
+        print(f"state: {state} \n")   
+        print(f"state['messages']: {state['messages']} \n") 
+        print(f"\n tool_call_id: {tool_call_id}")
+        state['messages'].append(ToolMessage(content="DEU CERTO", name='ToFlightSearchAssistant', id=tool_call_id, tool_call_id=tool_call_id))
+        print(state['messages'])
+        
+        
+        return {
             "messages": [
                 ToolMessage(
-                    " This is a nice test I",
-                    tool_call_id=tool_call_id,
+                    content=f"The assistant is now the {assistant_name}. Reflect on the above conversation between the host assistant and the user."
+                    f" The user's intent is unsatisfied. Use the provided tools to assist the user. Remember, you are {assistant_name},"
+                    " and the booking, update, other other action is not complete until after you have successfully invoked the appropriate tool."
+                    " If the user changes their mind or needs help for other tasks, call the CompleteOrEscalate function to let the primary host assistant take control."
+                    " Do not mention who you are - just act as the proxy for the assistant.",
+                    tool_call_id=tool_call_id,id=tool_call_id
                 )
             ],
-            "dialog_state": new_dialog_state
+            "dialog_state": new_dialog_state,
         }
-        return tool_message
     return entry_node
 
 
 def run_chatbot():
-    # Construção dos subgrafos - cada um assisntente especializado terá seu próprio subgrafo, serão todos muito parecidos.
-    # node 1: enter_*: utilizamos a função create_entry_node para adicionar uma tool message sinalizando que um agente especializado está no comando
-    # node 2: assistant: um prompt + llm que recebe o state atual que poderá utilizar uma tool, perguntar uma questão do usuário ou finalizar o workflow (retornal ao assistente principal)
-    # node 3: tools - aqui apenas estamos definindo os nodes, não necessariamente serão utilizados
-    
-    # Função que decide qual nó será executado a seguir com base no estado atual.
+
     def route_search_flight(
         state: State,
     ) -> Literal[
@@ -257,7 +225,6 @@ def run_chatbot():
         "leave_skill",         # retorna para o assistente principal
         "__end__",             # se a rota for para finalizar o workflow
     ]:
-        print("=================== entrei na route_search_flight ====================")
         route = tools_condition(state) # verifica se a rota é para utilizar alguma tool - a função tools_condition é uma função predefinida que verifica se a rota é para utilizar alguma tool
         if route == END:
             return END
@@ -268,13 +235,13 @@ def run_chatbot():
         return "flight_search_tools"
     
     
-    # A função pop_dialog_state é usada para gerenciar a transição do controle do fluxo de diálogo de volta para o assistente principal, retirando o estado atual da pilha de diálogo. Isso é útil para garantir que, após a execução de um assistente especializado, o controle seja retornado ao assistente principal, que pode então continuar a gerenciar a interação com o usuário.
     def pop_dialog_state(state: State) -> dict:
         """Pop the dialog stack and return to the main assistant.
 
         This lets the full graph explicitly track the dialog flow and delegate control
         to specific sub-graphs.
         """
+        print("---- \n estou na pop_dialog_state \n -----")
         messages = []
         if state["messages"][-1].tool_calls:
             # Note: Doesn't currently handle the edge case where the llm performs parallel tool calls
@@ -290,47 +257,26 @@ def run_chatbot():
         }
     
     
-        # Função de roteamento modificada para incluir a mensagem de ferramenta
-    
     def route_primary_assistant(
         state: State,
     ) -> Literal[
-        "primary_assistant_tools",
         "enter_flight_search_assistant",
         "__end__",
     ]:
-        print("---- \n Entrei no route_primary_assistant \n ----")
         route = tools_condition(state)
-        print(f"--- route = tools_condition(state): {route} ---")
         if route == END:
             return END
-
         tool_calls = state["messages"][-1].tool_calls
         if tool_calls:
-            tool_call_id = tool_calls[0]["id"]
             if tool_calls[0]["name"] == ToFlightSearchAssistant.__name__:
-                print("\n --------------- \n")
-                print("\n --------------- \n")
-                print("Antes de adicionar:", state["messages"])
-                tool_message = ToolMessage(
-                    content="Delegating to Flight Search Assistant",
-                    tool_call_id=tool_call_id
-                )
-                print("\n --------------- \n")
-                state["messages"].append(tool_message)
-                print("Depois de adicionar:", state["messages"])
-                print("\n --------------- \n")
-                print("\n --------------- \n")
+                print(f"---- \n estou na route_primary_assistant, e a ferramenta chamada foi {ToFlightSearchAssistant.__name__} \n -----")
                 return "enter_flight_search_assistant"
             elif tool_calls[0]["name"] == ToTourismAssistant.__name__:
                 return "enter_tourism_assistant"
             return "primary_assistant_tools"
         raise ValueError("Invalid route")
 
-    
-    
-    # Each delegated workflow can directly respond to the user
-    # When the user responds, we want to return to the currently active workflow
+
     def route_to_workflow(
             state: State,
         ) -> Literal[
@@ -339,29 +285,53 @@ def run_chatbot():
         ]:
             """If we are in a delegated state, route directly to the appropriate assistant."""
             dialog_state = state.get("dialog_state")
-            print("---- \n ENTRANDO NO route_to_workflow \n -----")
             if not dialog_state:
                 print("---- \n dialog_state é None, roteando de volta para o primary_assistant \n -----")
                 return "primary_assistant"
             return dialog_state[-1]
         
+    @tool
+    def fetch_user_flight_information() -> list[dict]:
+        """Fetch all tickets for the user along with corresponding flight information and seat assignments.
+
+        Returns:
+            A list of dictionaries where each dictionary contains the ticket details,
+            associated flight details, and the seat assignments for each ticket belonging to the user.
+        """
+        return [{"ticket_no": "7240005432906569", "book_ref": "C46E9F", "flight_id": 19250, "flight_no": "LX0112", "departure_airport": "CDG", "arrival_airport": "BSL", "scheduled_departure": "2024-04-30 12:09:03.561731-04:00", "scheduled_arrival": "2024-04-30 13:39:03.561731-04:00", "seat_no": "18E", "fare_conditions": "Economy"}]    
+        
+    def check_tool_messages(state: State) -> dict:
+        print("---- \n estou na check_tool_messages \n -----")
+        print("---- \n estou na check_tool_messages \n -----")
+        print(state)
+        
+        
+        
+        return { 'dialog_state': 'primary_assistant' }  
+        
+    def user_info(state: State):
+        return {"user_info": fetch_user_flight_information.invoke({})}
     
     builder = StateGraph(State)
     
+    
     builder.add_node("primary_assistant", Assistant(assistant_runnable))
     builder.add_node("primary_assistant_tools", create_tool_node_with_fallback(primary_assistant_tools))
+    
+    # adicionando os nodes relacionados ao flight_search_assistant
     builder.add_node("enter_flight_search_assistant", create_entry_node("Flight Search Assistant", "flight_search_assistant"))
     builder.add_node("flight_search_assistant", Assistant(flight_search_assistant_runnable))
     builder.add_node("flight_search_tools", create_tool_node_with_fallback(flight_search_assistant_tools))
     builder.add_node("leave_skill", pop_dialog_state)
     
+    builder.add_node("check_tool_messages", check_tool_messages)
+    # aducionando arestas e condicionais
     
-    builder.add_edge(START, "primary_assistant")
+    builder.add_node("fetch_user_info", user_info)
+    builder.add_edge(START, "fetch_user_info")
+    builder.add_conditional_edges("fetch_user_info", route_to_workflow)
+
     builder.add_conditional_edges("primary_assistant", route_to_workflow)
-    builder.add_edge("enter_flight_search_assistant", "flight_search_assistant")
-    builder.add_edge("flight_search_tools", "flight_search_assistant")
-    builder.add_conditional_edges("flight_search_tools", route_search_flight)
-    builder.add_edge("leave_skill", "primary_assistant")
     builder.add_conditional_edges(
         "primary_assistant",
         route_primary_assistant,
@@ -371,6 +341,12 @@ def run_chatbot():
             END: END,
         },
     )
+    
+    # builder.add_edge("enter_flight_search_assistant", "flight_search_assistant")
+    builder.add_edge("enter_flight_search_assistant", "check_tool_messages")
+    builder.add_edge("flight_search_tools", "flight_search_assistant")
+    builder.add_conditional_edges("flight_search_tools", route_search_flight)
+    builder.add_edge("leave_skill", "primary_assistant")
     builder.add_edge("primary_assistant_tools", "primary_assistant")
 
     # Compile graph
@@ -379,9 +355,7 @@ def run_chatbot():
     checkpointer=memory,)
     
     
-    # ---- INICIANDO A CONVERSAÇÃO -----
-    
-    # Update with the backup file so we can restart from the original place in each section
+
     thread_id = str(uuid.uuid4())
     
     config = {
@@ -392,7 +366,7 @@ def run_chatbot():
     
     _printed = set()
     
-    question = "Quais são as melhores opções de passagens aéreas saindo de VIX para São Paulo em 05/08/2024, eu posso chegar em qualquer aeroporto de São Paulo"
+    question = "Qual a relação entre os pinguins africanos e as correntes maritimas?"
     events = graph.stream(
         {"messages": ("user", question)}, config, stream_mode="values"
     )
@@ -400,9 +374,6 @@ def run_chatbot():
         _print_event(event, _printed)
     snapshot = graph.get_state(config)
     while snapshot.next:
-        # We have an interrupt! The agent is trying to use a tool, and the user can approve or deny it
-        # Note: This code is all outside of your graph. Typically, you would stream the output to a UI.
-        # Then, you would have the frontend trigger a new run via an API call when the user has provided input.
         user_input = input(
             "Do you approve of the above actions? Type 'y' to continue;"
             " otherwise, explain your requested changed.\n\n"

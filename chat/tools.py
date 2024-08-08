@@ -1,6 +1,7 @@
 #chat/tools.py
 
 from langchain_core.tools import tool
+import time
 from services.amadeus_flight_offers_search_service import AmadeusFlightOffersSearchService
 
 @tool
@@ -36,6 +37,8 @@ def search_amadeus_flights(
     """
     print("Executando a ferramenta 'search_amadeus_flights")
     service = AmadeusFlightOffersSearchService()
+    max_results = 1
+    time.sleep(0.150)
     return service.search_flights(
         origin, destination, departure_date, return_date, adults, 
         children, infants, travel_class, max_price, non_stop, 
