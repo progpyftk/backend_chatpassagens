@@ -34525,3 +34525,1391 @@ data
 }
 2024-08-10 18:45:58,740 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2024-08-10 18:54:53,930 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 20:02:08,475 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-05&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-05T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-05T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 20:02:08,481 - INFO - -----------------------------------------
+2024-08-10 20:02:08,481 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-05&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-05T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-05T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 20:02:09,890 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 20:03:13,213 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 20:03:15,817 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 20:03:18,674 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-06&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-06T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-06T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 20:03:18,675 - INFO - -----------------------------------------
+2024-08-10 20:03:18,675 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-06&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-06T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-06T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 20:03:18,710 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-07&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-07T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-07T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 20:03:18,711 - INFO - -----------------------------------------
+2024-08-10 20:03:18,711 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-07&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-07T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-07T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 20:03:20,992 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:23:11,474 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT1H5M', 'segments': [{'departure': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T21:20:00'}, 'arrival': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-01T22:25:00'}, 'carrierCode': 'G3', 'number': '2076', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '47.25', 'additionalServices': [{'amount': '21.30', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'NNJAAG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'N', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:23:11,478 - INFO - -----------------------------------------
+2024-08-10 21:23:11,478 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT1H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T21:20:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-01T22:25:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "2076",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "47.25",
+                "base": "42.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "47.25",
+                "additionalServices": [
+                    {
+                        "amount": "21.30",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "47.25",
+                        "base": "42.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "NNJAAG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "N",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:23:17,430 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:24:52,084 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=GIG&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT1H', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-01T14:20:00'}, 'arrival': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T15:20:00'}, 'carrierCode': 'G3', 'number': '1066', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '47.14', 'base': '42.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '47.14', 'additionalServices': [{'amount': '21.30', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '47.14', 'base': '42.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'NNJAAG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'N', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:24:52,085 - INFO - -----------------------------------------
+2024-08-10 21:24:52,085 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=GIG&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT1H",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-01T14:20:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T15:20:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1066",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "47.14",
+                "base": "42.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "47.14",
+                "additionalServices": [
+                    {
+                        "amount": "21.30",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "47.14",
+                        "base": "42.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "NNJAAG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "N",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:24:53,786 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2024-08-10 21:36:14,488 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT1H5M', 'segments': [{'departure': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T21:20:00'}, 'arrival': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-01T22:25:00'}, 'carrierCode': 'G3', 'number': '2076', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '47.25', 'additionalServices': [{'amount': '21.30', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'NNJAAG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'N', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:36:14,497 - INFO - -----------------------------------------
+2024-08-10 21:36:14,497 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT1H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T21:20:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-01T22:25:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "2076",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "47.25",
+                "base": "42.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "47.25",
+                "additionalServices": [
+                    {
+                        "amount": "21.30",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "47.25",
+                        "base": "42.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "NNJAAG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "N",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:36:16,645 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 400 Bad Request"
+2024-08-10 21:43:14,453 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-10 21:43:14,609 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-10 21:43:14,650 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-10 21:43:14,652 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-10 21:43:16,643 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:43:36,202 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:43:40,081 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:43:43,855 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SDU&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT11H40M', 'segments': [{'departure': {'iataCode': 'SDU', 'at': '2024-10-01T20:30:00'}, 'arrival': {'iataCode': 'BSB', 'at': '2024-10-01T22:25:00'}, 'carrierCode': 'G3', 'number': '1765', 'aircraft': {'code': '73G'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H55M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}, {'departure': {'iataCode': 'BSB', 'at': '2024-10-02T06:15:00'}, 'arrival': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-02T08:10:00'}, 'carrierCode': 'G3', 'number': '1409', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H55M', 'id': '2', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '53.24', 'base': '46.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '53.24', 'additionalServices': [{'amount': '42.60', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '53.24', 'base': '46.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'ONJAAG1G', 'brandedFare': 'PO', 'brandedFareLabel': 'PROMO', 'class': 'O', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}, {'segmentId': '2', 'cabin': 'ECONOMY', 'fareBasis': 'ONJAAG1G', 'brandedFare': 'PO', 'brandedFareLabel': 'PROMO', 'class': 'O', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'BSB': {'cityCode': 'BSB', 'countryCode': 'BR'}, 'SDU': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'73G': 'BOEING 737-700', '738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:43:43,855 - INFO - -----------------------------------------
+2024-08-10 21:43:43,855 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SDU&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT11H40M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "SDU",
+                                "terminal": null,
+                                "at": "2024-10-01T20:30:00"
+                            },
+                            "arrival": {
+                                "iataCode": "BSB",
+                                "terminal": null,
+                                "at": "2024-10-01T22:25:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1765",
+                            "aircraft": {
+                                "code": "73G"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H55M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        },
+                        {
+                            "id": "2",
+                            "departure": {
+                                "iataCode": "BSB",
+                                "terminal": null,
+                                "at": "2024-10-02T06:15:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-02T08:10:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1409",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H55M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "53.24",
+                "base": "46.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "53.24",
+                "additionalServices": [
+                    {
+                        "amount": "42.60",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "53.24",
+                        "base": "46.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "ONJAAG1G",
+                            "brandedFare": "PO",
+                            "brandedFareLabel": "PROMO",
+                            "class_": "O",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        },
+                        {
+                            "segmentId": "2",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "ONJAAG1G",
+                            "brandedFare": "PO",
+                            "brandedFareLabel": "PROMO",
+                            "class_": "O",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:43:44,174 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SDU&destinationLocationCode=CGH&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT1H5M', 'segments': [{'departure': {'iataCode': 'SDU', 'at': '2024-10-01T06:15:00'}, 'arrival': {'iataCode': 'CGH', 'at': '2024-10-01T07:20:00'}, 'carrierCode': 'G3', 'number': '1003', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '64.24', 'base': '57.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '64.24', 'additionalServices': [{'amount': '21.30', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '64.24', 'base': '57.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'NNJAAG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'N', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'CGH': {'cityCode': 'SAO', 'countryCode': 'BR'}, 'SDU': {'cityCode': 'RIO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:43:44,174 - INFO - -----------------------------------------
+2024-08-10 21:43:44,174 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=SDU&destinationLocationCode=CGH&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT1H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "SDU",
+                                "terminal": null,
+                                "at": "2024-10-01T06:15:00"
+                            },
+                            "arrival": {
+                                "iataCode": "CGH",
+                                "terminal": null,
+                                "at": "2024-10-01T07:20:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1003",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "64.24",
+                "base": "57.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "64.24",
+                "additionalServices": [
+                    {
+                        "amount": "21.30",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "64.24",
+                        "base": "57.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "NNJAAG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "N",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:43:45,187 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=CGH&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT14H40M', 'segments': [{'departure': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T17:50:00'}, 'arrival': {'iataCode': 'CNF', 'at': '2024-10-01T18:55:00'}, 'carrierCode': 'G3', 'number': '1906', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}, {'departure': {'iataCode': 'CNF', 'at': '2024-10-02T07:00:00'}, 'arrival': {'iataCode': 'CGH', 'at': '2024-10-02T08:30:00'}, 'carrierCode': 'G3', 'number': '1311', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H30M', 'id': '2', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '46.25', 'base': '41.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '46.25', 'additionalServices': [{'amount': '42.60', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '46.25', 'base': '41.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'BNJIBG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'B', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}, {'segmentId': '2', 'cabin': 'ECONOMY', 'fareBasis': 'ONJIBG1G', 'brandedFare': 'PO', 'brandedFareLabel': 'PROMO', 'class': 'O', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'CGH': {'cityCode': 'SAO', 'countryCode': 'BR'}, 'CNF': {'cityCode': 'BHZ', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:43:45,187 - INFO - -----------------------------------------
+2024-08-10 21:43:45,187 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=CGH&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT14H40M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T17:50:00"
+                            },
+                            "arrival": {
+                                "iataCode": "CNF",
+                                "terminal": null,
+                                "at": "2024-10-01T18:55:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1906",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        },
+                        {
+                            "id": "2",
+                            "departure": {
+                                "iataCode": "CNF",
+                                "terminal": null,
+                                "at": "2024-10-02T07:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "CGH",
+                                "terminal": null,
+                                "at": "2024-10-02T08:30:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1311",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H30M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "46.25",
+                "base": "41.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "46.25",
+                "additionalServices": [
+                    {
+                        "amount": "42.60",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "46.25",
+                        "base": "41.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "BNJIBG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "B",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        },
+                        {
+                            "segmentId": "2",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "ONJIBG1G",
+                            "brandedFare": "PO",
+                            "brandedFareLabel": "PROMO",
+                            "class_": "O",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:43:45,236 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT13H30M', 'segments': [{'departure': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T17:50:00'}, 'arrival': {'iataCode': 'CNF', 'at': '2024-10-01T18:55:00'}, 'carrierCode': 'G3', 'number': '1906', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}, {'departure': {'iataCode': 'CNF', 'at': '2024-10-02T06:00:00'}, 'arrival': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-02T07:20:00'}, 'carrierCode': 'G3', 'number': '1363', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H20M', 'id': '2', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '46.25', 'base': '41.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '46.25', 'additionalServices': [{'amount': '42.60', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '46.25', 'base': '41.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'BNJIBG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'B', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}, {'segmentId': '2', 'cabin': 'ECONOMY', 'fareBasis': 'ONJIBG1G', 'brandedFare': 'PO', 'brandedFareLabel': 'PROMO', 'class': 'O', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'CNF': {'cityCode': 'BHZ', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:43:45,236 - INFO - -----------------------------------------
+2024-08-10 21:43:45,236 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT13H30M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T17:50:00"
+                            },
+                            "arrival": {
+                                "iataCode": "CNF",
+                                "terminal": null,
+                                "at": "2024-10-01T18:55:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1906",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        },
+                        {
+                            "id": "2",
+                            "departure": {
+                                "iataCode": "CNF",
+                                "terminal": null,
+                                "at": "2024-10-02T06:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-02T07:20:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "1363",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H20M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "46.25",
+                "base": "41.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "46.25",
+                "additionalServices": [
+                    {
+                        "amount": "42.60",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "46.25",
+                        "base": "41.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "BNJIBG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "B",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        },
+                        {
+                            "segmentId": "2",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "ONJIBG1G",
+                            "brandedFare": "PO",
+                            "brandedFareLabel": "PROMO",
+                            "class_": "O",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:43:47,891 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:55:57,923 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-10-01', 'lastTicketingDateTime': '2024-10-01', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT1H5M', 'segments': [{'departure': {'iataCode': 'GIG', 'terminal': '2', 'at': '2024-10-01T21:20:00'}, 'arrival': {'iataCode': 'GRU', 'terminal': '2', 'at': '2024-10-01T22:25:00'}, 'carrierCode': 'G3', 'number': '2076', 'aircraft': {'code': '738'}, 'operating': {'carrierCode': 'G3'}, 'duration': 'PT1H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '47.25', 'additionalServices': [{'amount': '21.30', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['AF'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '47.25', 'base': '42.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'NNJAAG2G', 'brandedFare': 'LT', 'brandedFareLabel': 'LIGHT', 'class': 'N', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FOURTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'FIFTH CHECKED BAGGAGE', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SNACK', 'isChargeable': False, 'amenityType': 'MEAL', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'GIG': {'cityCode': 'RIO', 'countryCode': 'BR'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'738': 'BOEING 737-800'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'G3': 'GOL LINHAS AEREAS S/A'}}}
+2024-08-10 21:55:57,929 - INFO - -----------------------------------------
+2024-08-10 21:55:57,929 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GIG&destinationLocationCode=GRU&departureDate=2024-10-01&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-10-01",
+            "lastTicketingDateTime": "2024-10-01",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT1H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GIG",
+                                "terminal": "2",
+                                "at": "2024-10-01T21:20:00"
+                            },
+                            "arrival": {
+                                "iataCode": "GRU",
+                                "terminal": "2",
+                                "at": "2024-10-01T22:25:00"
+                            },
+                            "carrierCode": "G3",
+                            "number": "2076",
+                            "aircraft": {
+                                "code": "738"
+                            },
+                            "operating": {
+                                "carrierCode": "G3"
+                            },
+                            "duration": "PT1H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "47.25",
+                "base": "42.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "47.25",
+                "additionalServices": [
+                    {
+                        "amount": "21.30",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "AF"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "47.25",
+                        "base": "42.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "NNJAAG2G",
+                            "brandedFare": "LT",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "N",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 21:55:58,697 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:56:20,989 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 21:56:22,250 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"

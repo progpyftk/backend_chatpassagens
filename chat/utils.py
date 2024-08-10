@@ -1,7 +1,7 @@
 from langchain_core.messages import ToolMessage
 from langchain_core.runnables import RunnableLambda
 from langgraph.prebuilt import ToolNode
-
+import os
 
 def handle_tool_error(state) -> dict:
     error = state.get("error")
@@ -39,3 +39,12 @@ def _print_event(event: dict, _printed: set, max_length=1500):
                 msg_repr = msg_repr[:max_length] + " ... (truncated)"
             print(msg_repr)
             _printed.add(message.id)
+            
+
+async def reset_database():
+    """Function to reset the database."""
+    try:
+        os.remove("checkpoints.db")
+        print("Database reset successfully.")
+    except FileNotFoundError:
+        print("Database file not found, no need to reset.")
