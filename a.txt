@@ -1,0 +1,93 @@
+.
+├── __init__.py
+├── __pycache__
+│   └── __init__.cpython-311.pyc
+├── a.txt
+├── backend_chatpassagens
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── settings.cpython-311.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   └── wsgi.cpython-311.pyc
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── chat
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── admin.cpython-311.pyc
+│   │   ├── apps.cpython-311.pyc
+│   │   ├── models.cpython-311.pyc
+│   │   ├── run_chat.cpython-311.pyc
+│   │   ├── run_chat_deep.cpython-311.pyc
+│   │   ├── run_chat_with_subgraphs.cpython-311.pyc
+│   │   ├── run_chat_with_subgraphs_funcionou.cpython-311.pyc
+│   │   ├── tools.cpython-311.pyc
+│   │   └── utils.cpython-311.pyc
+│   ├── admin.py
+│   ├── apps.py
+│   ├── management
+│   │   ├── __init__.py
+│   │   ├── __pycache__
+│   │   │   └── __init__.cpython-311.pyc
+│   │   └── commands
+│   │       ├── __init__.py
+│   │       ├── __pycache__
+│   │       │   ├── __init__.cpython-311.pyc
+│   │       │   └── command_run_chat.cpython-311.pyc
+│   │       └── command_run_chat.py
+│   ├── migrations
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── prompts
+│   │   ├── flight_searcher_prompt.py
+│   │   ├── supervisor_prompt.py
+│   │   └── tourism_searcher_prompt.py
+│   ├── run_chat.py
+│   ├── run_chat_deep.py
+│   ├── run_chat_with_subgraphs_funcionou.py
+│   ├── services
+│   ├── tests.py
+│   ├── tools.py
+│   ├── utils.py
+│   └── views.py
+├── checkpoints.db
+├── db.sqlite3
+├── flight_offers.log
+├── manage.py
+├── models
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   └── flight_offers_models.cpython-311.pyc
+│   └── flight_offers_models.py
+├── poetry.lock
+├── pyproject.toml
+├── pytest.ini
+├── readme.md
+├── readme_amadeus_api
+├── services
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── amadeus_access_token.cpython-311.pyc
+│   │   ├── amadeus_auth_service.cpython-311.pyc
+│   │   ├── amadeus_flight_offers_search_service.cpython-311.pyc
+│   │   ├── flight_offers_search_service.cpython-311-pytest-8.3.2.pyc
+│   │   └── flight_offers_search_service.cpython-311.pyc
+│   ├── amadeus_auth_service.py
+│   ├── amadeus_flight_offers_search_service.py
+│   └── llm_service.py
+└── tests
+    ├── __init__.py
+    ├── __pycache__
+    │   ├── __init__.cpython-311.pyc
+    │   ├── test_amadeus_auth.cpython-311-pytest-8.3.2.pyc
+    │   └── test_flight_offers_search_service.cpython-311-pytest-8.3.2.pyc
+    ├── test_amadeus_auth.py
+    └── test_flight_offers_search_service.py
+
+18 directories, 72 files

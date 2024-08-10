@@ -12,8 +12,11 @@ import os
 from dotenv import load_dotenv
 import asyncio
 from langgraph.checkpoint.aiosqlite import AsyncSqliteSaver
+from .prompts.supervisor_prompt import SUPERVISOR_PROMPT, extract_json
+from services.llm_service import LLMService
+import pprint
 
-
+llm = LLMService()
 memory = SqliteSaver.from_conn_string(":memory:")
 
 # Load environment variables
@@ -30,27 +33,11 @@ class AgentState(TypedDict):
     content: List[str]
     tool_calls: List[Dict]  # Add this field to store tool calls
     
-class Supervisor(BaseModel):
-    """Analyse conversation then you can awnser the user or route the message for a specialized assistant including your thoughts"""
-
-    though: Optional[str] = Field(description="Any thoughts you have about the user's question that may help the next assistant")
-    awnser: Optional[str] = Field(description="The awnser to the user, based on the last agent awsers, or asking for more information")
-    route_to: Optional[Literal['flight_searcher', 'tourism_searcher']] = Field(description="The specialized assistant to route the user's question to")
-    action_justification: str = Field(description="Justify why you are routing the user's question to the specialized assistant or direclty awnsering the user")
-
 # Initialize tools
 tools = [search_amadeus_flights]
 tool_node = ToolNode(tools)
 
-# Define prompts for the LLM
-SUPERVISOR_PROMPT = """
-You are a supervisor tasked with analyzing the user's question and then routing the question to a specialized assistant. 
-You must respond with only one of the following options based on the question: 
-- "flight_searcher" for questions related to flight searches.
-- "tourism_searcher" for questions related SOCCER.
 
-Do not include any other text in your response.
-"""
 
 FLIGHT_SEARCHER_PROMPT = """ 
 Você é um especialista em passagens aéreas e está encarregado de responder a pergunta do usuário sobre passagens aéreas.
@@ -69,23 +56,16 @@ You are a tourism specialist and you are tasked with answering the users questio
 """
 
 
-
-
-
-
 def supervisor_node(state: AgentState):
     """Node function for the supervisor agent."""
-    
-    structured_llm = llm.with_structured_output(Supervisor, include_raw=True)
-    
     print("----   supervisor_node   ----")
-    state['messages'].extend([SystemMessage(content=SUPERVISOR_PROMPT)])
-
-    response = structured_llm.invoke([SystemMessage(content=SUPERVISOR_PROMPT)] + state['messages'])
+    response = llm.invoke([SystemMessage(content=SUPERVISOR_PROMPT)] + state['messages'])
     print("\n----   Resposta criada pela LLM SUPERVISOR   ----")
-    print(response)
-  
-    next_assistant = response['parsed'].route_to
+    pprint.pprint(response)
+    parsed_response = extract_json(response)
+    print("\n----   Resposta do SUPERVISOR após o extract_json   ----")
+    pprint.pprint(parsed_response)
+    next_assistant = parsed_response['route']
 
     # Ensure the response is either "flight_searcher" or "tourism_searcher"
     if next_assistant not in ["flight_searcher", "tourism_searcher"]:
@@ -93,6 +73,8 @@ def supervisor_node(state: AgentState):
     
     print(f"Next assistant: {next_assistant}")
     return {"messages": response, "next_assistant": next_assistant}
+
+
 
 def flight_searcher_node(state: AgentState):
     """Node function for the flight searcher agent."""
@@ -208,7 +190,8 @@ async def run_chatbot():
         
         # Stream events asynchronously with version specified
         async for event in graph.astream_events({"messages": []}, thread, version='v2'):
-            print("Event received:", event)
+            pass
+            # print("Event received:", event)
             
             # Handle specific event types
             #if event['event'] == 'on_chain_end':

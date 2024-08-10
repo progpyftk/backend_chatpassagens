@@ -34181,3 +34181,347 @@ data
 2024-08-08 12:23:51,568 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2024-08-08 12:24:06,932 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
 2024-08-08 12:24:08,369 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 18:45:34,250 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-05&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-05T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-05T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 18:45:34,255 - INFO - -----------------------------------------
+2024-08-10 18:45:34,255 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-05&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-05T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-05T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 18:45:35,153 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 18:45:52,225 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 18:45:54,563 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 18:45:57,741 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-06&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-06T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-06T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 18:45:57,741 - INFO - -----------------------------------------
+2024-08-10 18:45:57,741 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-06&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-06T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-06T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 18:45:57,905 - INFO - Request successful: {'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-07&adults=1&children=0&infants=0&max=1&nonStop=true'}}, 'data': [{'type': 'flight-offer', 'id': '1', 'source': 'GDS', 'instantTicketingRequired': False, 'nonHomogeneous': False, 'oneWay': False, 'isUpsellOffer': False, 'lastTicketingDate': '2024-08-13', 'lastTicketingDateTime': '2024-08-13', 'numberOfBookableSeats': 7, 'itineraries': [{'duration': 'PT9H5M', 'segments': [{'departure': {'iataCode': 'GRU', 'terminal': '3', 'at': '2024-10-07T14:00:00'}, 'arrival': {'iataCode': 'MCO', 'terminal': 'B', 'at': '2024-10-07T22:05:00'}, 'carrierCode': 'LA', 'number': '8126', 'aircraft': {'code': '789'}, 'duration': 'PT9H5M', 'id': '1', 'numberOfStops': 0, 'blacklistedInEU': False}]}], 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00', 'fees': [{'amount': '0.00', 'type': 'SUPPLIER'}, {'amount': '0.00', 'type': 'TICKETING'}], 'grandTotal': '521.18', 'additionalServices': [{'amount': '64.81', 'type': 'CHECKED_BAGS'}]}, 'pricingOptions': {'fareType': ['PUBLISHED'], 'includedCheckedBagsOnly': False}, 'validatingAirlineCodes': ['LA'], 'travelerPricings': [{'travelerId': '1', 'fareOption': 'STANDARD', 'travelerType': 'ADULT', 'price': {'currency': 'EUR', 'total': '521.18', 'base': '463.00'}, 'fareDetailsBySegment': [{'segmentId': '1', 'cabin': 'ECONOMY', 'fareBasis': 'XLESLZWE', 'brandedFare': 'SL', 'brandedFareLabel': 'LIGHT', 'class': 'X', 'includedCheckedBags': {'quantity': 0}, 'amenities': [{'description': 'FIRST EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'SECOND EXCESS BAG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'THIRD BAG 23KG', 'isChargeable': True, 'amenityType': 'BAGGAGE', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'BASIC SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'PREMIUM SEAT RESERVATION', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE BEFORE DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}, {'description': 'CHANGE AFTER DEPARTURE', 'isChargeable': True, 'amenityType': 'BRANDED_FARES', 'amenityProvider': {'name': 'BrandedFare'}}]}]}]}], 'dictionaries': {'locations': {'MCO': {'cityCode': 'ORL', 'countryCode': 'US'}, 'GRU': {'cityCode': 'SAO', 'countryCode': 'BR'}}, 'aircraft': {'789': 'BOEING 787-9'}, 'currencies': {'EUR': 'EURO'}, 'carriers': {'LA': 'LATAM AIRLINES GROUP'}}}
+2024-08-10 18:45:57,905 - INFO - -----------------------------------------
+2024-08-10 18:45:57,905 - INFO - Flight offers data: {
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=GRU&destinationLocationCode=MCO&departureDate=2024-10-07&adults=1&children=0&infants=0&max=1&nonStop=true"
+        }
+    },
+    "data": [
+        {
+            "type": "flight-offer",
+            "id": "1",
+            "source": "GDS",
+            "instantTicketingRequired": false,
+            "nonHomogeneous": false,
+            "oneWay": false,
+            "lastTicketingDate": "2024-08-13",
+            "lastTicketingDateTime": "2024-08-13",
+            "numberOfBookableSeats": 7,
+            "itineraries": [
+                {
+                    "duration": "PT9H5M",
+                    "segments": [
+                        {
+                            "id": "1",
+                            "departure": {
+                                "iataCode": "GRU",
+                                "terminal": "3",
+                                "at": "2024-10-07T14:00:00"
+                            },
+                            "arrival": {
+                                "iataCode": "MCO",
+                                "terminal": "B",
+                                "at": "2024-10-07T22:05:00"
+                            },
+                            "carrierCode": "LA",
+                            "number": "8126",
+                            "aircraft": {
+                                "code": "789"
+                            },
+                            "operating": null,
+                            "duration": "PT9H5M",
+                            "numberOfStops": 0,
+                            "blacklistedInEU": false
+                        }
+                    ]
+                }
+            ],
+            "price": {
+                "currency": "EUR",
+                "total": "521.18",
+                "base": "463.00",
+                "fees": [
+                    {
+                        "amount": "0.00",
+                        "type": "SUPPLIER"
+                    },
+                    {
+                        "amount": "0.00",
+                        "type": "TICKETING"
+                    }
+                ],
+                "grandTotal": "521.18",
+                "additionalServices": [
+                    {
+                        "amount": "64.81",
+                        "type": "CHECKED_BAGS"
+                    }
+                ]
+            },
+            "pricingOptions": {
+                "fareType": [
+                    "PUBLISHED"
+                ],
+                "includedCheckedBagsOnly": false
+            },
+            "validatingAirlineCodes": [
+                "LA"
+            ],
+            "travelerPricings": [
+                {
+                    "travelerId": "1",
+                    "fareOption": "STANDARD",
+                    "travelerType": "ADULT",
+                    "price": {
+                        "currency": "EUR",
+                        "total": "521.18",
+                        "base": "463.00",
+                        "fees": null,
+                        "grandTotal": null,
+                        "additionalServices": null
+                    },
+                    "fareDetailsBySegment": [
+                        {
+                            "segmentId": "1",
+                            "cabin": "ECONOMY",
+                            "fareBasis": "XLESLZWE",
+                            "brandedFare": "SL",
+                            "brandedFareLabel": "LIGHT",
+                            "class_": "X",
+                            "includedCheckedBags": {
+                                "quantity": 0,
+                                "weight": null,
+                                "weightUnit": null
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+2024-08-10 18:45:58,740 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-10 18:54:53,930 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
