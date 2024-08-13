@@ -3,6 +3,7 @@
 from langchain_core.tools import tool
 import time
 from services.amadeus_flight_offers_search_service import AmadeusFlightOffersSearchService
+from services.amadeus_flight_price_analysis_service import AmadeusFlightPriceAnalysisService
 
 @tool
 def search_amadeus_flights(
@@ -46,13 +47,29 @@ def search_amadeus_flights(
         max_results
     )
 
+
 @tool
-def tourism_info_tool(
-    local: str,
+def flight_price_analisys(
+    origin: str,
+    destination: str,
+    departure_date: str,
+    currency_code: str = "EUR",
+    one_way: bool = False
 ) -> dict:
     """
-    Busca locais sobre turismo 
-    """
-    print("Executando a ferramenta 'search_amadeus_flights")
+    Realiza uma análise detalhada de preços de passagens aéreas utilizando a API Amadeus, ideal para obter insights sobre a faixa de preços (mínimo, mediano e máximo) para uma determinada rota em uma data específica.
 
-    return "Parábens"
+    Parâmetros:
+    - origin (str): Código IATA do aeroporto de origem (ex: 'JFK').
+    - destination (str): Código IATA do aeroporto de destino (ex: 'LAX').
+    - departure_date (str): Data de partida no formato 'YYYY-MM-DD'.
+    - currency_code (str, opcional): Código da moeda preferida (ex: 'USD', padrão: 'EUR').
+    - one_way (bool, opcional): 'True' para viagem só de ida, 'False' para ida e volta (padrão: False).
+    
+    Retorna:
+    - dict: Um dicionário contendo as métricas de preço para o itinerário especificado.
+    """
+    print("Executando a ferramenta 'analyze_flight_prices'")
+    service = AmadeusFlightPriceAnalysisService()
+    time.sleep(0.150)  # Simulando latência da API
+    return service.get_price_metrics(origin, destination, departure_date, currency_code, one_way)

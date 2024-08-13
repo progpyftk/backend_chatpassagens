@@ -4,6 +4,11 @@ from models.flight_offers_models import FlightOffersSearchResponse
 import logging
 import json
 
+"""
+Self-Service APIs / Flights / Flight Booking / Flight Offers Search
+link: https://developers.amadeus.com/self-service/category/flights/api-doc/flight-offers-search
+"""
+
 
 class AmadeusFlightOffersSearchService:
     def __init__(self):

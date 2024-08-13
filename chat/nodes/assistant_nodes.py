@@ -5,7 +5,7 @@ from services.llm_service import LLMService
 import pprint
 from langchain_core.messages import SystemMessage, ToolMessage
 from ..prompts.flight_searcher_prompt import FLIGHT_SEARCHER_PROMPT, FLIGHT_SEARCHER_TOOL_RESPONSE_PROMPT
-from ..tools import search_amadeus_flights
+from ..tools import search_amadeus_flights, flight_price_analisys
 from ..states.agent_state import AgentState
 from services.llm_service import LLMService
 
@@ -35,7 +35,7 @@ def supervisor_node(state: AgentState):
 def flight_searcher_node(state: AgentState):
     """Node function for the flight searcher agent."""
     print("----   flight_searcher_node   ----")
-    tools = [search_amadeus_flights]
+    tools = [search_amadeus_flights, flight_price_analisys]
     if state['messages'] and isinstance(state['messages'][-1], ToolMessage):
         state['messages'].extend([SystemMessage(content=FLIGHT_SEARCHER_TOOL_RESPONSE_PROMPT.format(content=state['messages']))])
         response = llm.bind_tools(tools, parallel_tool_calls=True).invoke(state['messages'])
@@ -56,3 +56,9 @@ def tourism_searcher_node(state: AgentState):
     response = llm.bind_tools(tools, parallel_tool_calls=True).invoke(
         [SystemMessage(content="prompt do tourist searcher")] + state['messages'])
     return {"messages": response}
+
+def user_input_node(state: AgentState):
+    """Node function to capture user input."""
+    print("----   user_input_node   ----")
+    user_input = input()
+    return {"messages": [HumanMessage(content=user_input)]}

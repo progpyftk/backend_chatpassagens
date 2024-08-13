@@ -6,14 +6,14 @@ from services.llm_service import LLMService
 import pprint
 from langchain_core.messages import SystemMessage, ToolMessage
 from ..prompts.flight_searcher_prompt import FLIGHT_SEARCHER_PROMPT, FLIGHT_SEARCHER_TOOL_RESPONSE_PROMPT
-from ..tools import search_amadeus_flights
+from ..tools import search_amadeus_flights, flight_price_analisys
 from ..states.agent_state import AgentState
 from services.llm_service import LLMService
 from langgraph.prebuilt import ToolNode
 
 
 # Initialize tools
-tools = [search_amadeus_flights]
+tools = [search_amadeus_flights, flight_price_analisys]
 tool_node = ToolNode(tools)
 
 def execute_flight_search(state: AgentState):

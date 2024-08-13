@@ -1,0 +1,135 @@
+2024-08-12 16:43:10,887 - INFO - Request successful: {'warnings': [{'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR'}], 'data': [{'type': 'itinerary-price-metric', 'origin': {'iataCode': 'MAD'}, 'destination': {'iataCode': 'CDG'}, 'departureDate': '2024-09-15', 'transportType': 'FLIGHT', 'currencyCode': 'EUR', 'oneWay': False, 'priceMetrics': [{'amount': '43.05', 'quartileRanking': 'MINIMUM'}, {'amount': '220.10', 'quartileRanking': 'FIRST'}, {'amount': '274.33', 'quartileRanking': 'MEDIUM'}, {'amount': '324.89', 'quartileRanking': 'THIRD'}, {'amount': '427.54', 'quartileRanking': 'MAXIMUM'}]}], 'meta': {'count': 1, 'links': {'self': 'https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=MAD&destinationIataCode=CDG&departureDate=2024-09-15&currencyCode=EUR&oneWay=False'}}}
+2024-08-12 16:43:10,887 - INFO - -----------------------------------------
+2024-08-12 16:43:10,887 - INFO - Price metrics data: {
+    "warnings": [
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR"
+        }
+    ],
+    "data": [
+        {
+            "type": "itinerary-price-metric",
+            "origin": {
+                "iataCode": "MAD"
+            },
+            "destination": {
+                "iataCode": "CDG"
+            },
+            "departureDate": "2024-09-15",
+            "transportType": "FLIGHT",
+            "currencyCode": "EUR",
+            "oneWay": false,
+            "priceMetrics": [
+                {
+                    "amount": "43.05",
+                    "quartileRanking": "MINIMUM"
+                },
+                {
+                    "amount": "220.10",
+                    "quartileRanking": "FIRST"
+                },
+                {
+                    "amount": "274.33",
+                    "quartileRanking": "MEDIUM"
+                },
+                {
+                    "amount": "324.89",
+                    "quartileRanking": "THIRD"
+                },
+                {
+                    "amount": "427.54",
+                    "quartileRanking": "MAXIMUM"
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "count": 1,
+        "links": {
+            "self": "https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=MAD&destinationIataCode=CDG&departureDate=2024-09-15&currencyCode=EUR&oneWay=False"
+        }
+    }
+}
+2024-08-12 19:55:10,450 - INFO - Request successful: {'warnings': [{'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR'}, {'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported route.'}], 'data': [], 'meta': {'count': 0, 'links': {'self': 'https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=GIG&departureDate=2024-05-10&currencyCode=EUR&oneWay=False'}}}
+2024-08-12 19:55:10,457 - INFO - -----------------------------------------
+2024-08-12 19:55:10,457 - INFO - Price metrics data: {
+    "warnings": [
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR"
+        },
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported route."
+        }
+    ],
+    "data": [],
+    "meta": {
+        "count": 0,
+        "links": {
+            "self": "https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=GIG&departureDate=2024-05-10&currencyCode=EUR&oneWay=False"
+        }
+    }
+}
+2024-08-12 19:55:11,488 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:01,203 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:04,422 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:06,873 - INFO - Request successful: {'warnings': [{'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR'}, {'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported route.'}], 'data': [], 'meta': {'count': 0, 'links': {'self': 'https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=SDU&departureDate=2024-05-10&currencyCode=EUR&oneWay=False'}}}
+2024-08-12 19:56:06,874 - INFO - -----------------------------------------
+2024-08-12 19:56:06,874 - INFO - Price metrics data: {
+    "warnings": [
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR"
+        },
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported route."
+        }
+    ],
+    "data": [],
+    "meta": {
+        "count": 0,
+        "links": {
+            "self": "https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=SDU&departureDate=2024-05-10&currencyCode=EUR&oneWay=False"
+        }
+    }
+}
+2024-08-12 19:56:06,894 - INFO - Request successful: {'warnings': [{'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR'}, {'code': 22443, 'title': 'WARNING', 'detail': 'Unsupported route.'}], 'data': [], 'meta': {'count': 0, 'links': {'self': 'https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=GIG&departureDate=2024-05-10&currencyCode=EUR&oneWay=False'}}}
+2024-08-12 19:56:06,894 - INFO - -----------------------------------------
+2024-08-12 19:56:06,894 - INFO - Price metrics data: {
+    "warnings": [
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported currency code. Supported currencies are CAD,HKD,ISK,PHP,DKK,HUF,CZK,AUD,RON,SEK,IDR,INR,BRL,RUB,HRK,JPY,THB,CHF,SGD,PLN,BGN,TRY,CNY,NOK,NZD,ZAR,USD,MXN,ILS,GBP,KRW,MYR"
+        },
+        {
+            "code": 22443,
+            "title": "WARNING",
+            "detail": "Unsupported route."
+        }
+    ],
+    "data": [],
+    "meta": {
+        "count": 0,
+        "links": {
+            "self": "https://test.api.amadeus.com/v1/analytics/flight-price-metrics?originIataCode=GRU&destinationIataCode=GIG&departureDate=2024-05-10&currencyCode=EUR&oneWay=False"
+        }
+    }
+}
+2024-08-12 19:56:10,455 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:44,055 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:47,601 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:50,265 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-12 19:56:50,336 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-12 19:56:51,809 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-08-12 19:56:58,532 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-12 19:56:58,540 - ERROR - Erro: 400, {"errors":[{"status":400,"code":425,"title":"INVALID DATE","detail":"Date/Time is in the past","source":{}}]}
+2024-08-12 19:57:01,649 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"

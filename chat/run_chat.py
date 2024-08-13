@@ -1,84 +1,60 @@
-# chat/run_chat.py
 
-from typing import Annotated
-from typing_extensions import TypedDict
-from langgraph.graph.message import AnyMessage, add_messages
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import Runnable, RunnableConfig
-from langchain_openai import ChatOpenAI
-from datetime import datetime
-from .tools import search_amadeus_flights
+# Próximos passos:
+# `1. Depois de receber o resultado da chamada da tool o agente de flight search tem que poder chamar mais ferramentas se necessario.`
+
+
 from langgraph.checkpoint.sqlite import SqliteSaver
-from langgraph.graph import END, StateGraph, START
-from .utils import create_tool_node_with_fallback, _print_event
-from langgraph.prebuilt import tools_condition
-from IPython.display import Image, display
+from langgraph.graph import StateGraph
+from langgraph.checkpoint.aiosqlite import AsyncSqliteSaver
+from .nodes.assistant_nodes import supervisor_node, flight_searcher_node, tourism_searcher_node, user_input_node
+from .nodes.routing_nodes import route_flight_search, main_routing_function
+from .nodes.tool_nodes import execute_flight_search
+from .states.agent_state import AgentState
+from .utils import reset_database
 from dotenv import load_dotenv
-import os
 
-load_dotenv()  # Carrega as variáveis de ambiente do arquivo .env
+# Load environment variables
+load_dotenv()
 
-class State(TypedDict):
-    messages: Annotated[list[AnyMessage], add_messages]
+# Initialize the memory
+memory = SqliteSaver.from_conn_string(":memory:")
 
-class Assistant:
-    def __init__(self, runnable: Runnable):
-        self.runnable = runnable
-
-    def __call__(self, state: State, config: RunnableConfig):
-        result = None
-        while True:
-            configuration = config.get("configurable", {})
-            result = self.runnable.invoke(state, configuration)
-            if result:
-                break
-        return {"messages": result}
-
-def run_chatbot():
-    llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o-mini-2024-07-18")
-    primary_assistant_prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                " You are an assistant specializing in travel inquiries, particularly flight bookings. "
-                " Your task is to interpret the user's question and select the most appropriate tool to provide accurate and helpful information. "
-                " Focus on delivering the best results related to flight options, booking details, and other travel-related services."
-                " Ensure comprehensive searches and do not hesitate to use multiple tools if necessary."
-                "\nCurrent time: {time}.",
-            ),
-            ("placeholder", "{messages}"),
-        ]
-    ).partial(time=datetime.now())
+async def run_chatbot():
+    """Main function to run the chatbot."""
+    # reseta a memoria, depois eu vou retirar isso.
+    await reset_database()
+    builder = StateGraph(AgentState)
+    builder.add_node("supervisor", supervisor_node)
+    builder.add_node("flight_searcher", flight_searcher_node)
+    builder.add_node("execute_flight_search", execute_flight_search)
+    builder.add_node("tourism_searcher", tourism_searcher_node)
+    builder.add_node("user_input", user_input_node)
+    builder.set_entry_point("user_input")
+    builder.add_conditional_edges(
+        "supervisor", main_routing_function, {
+                "flight_searcher": "flight_searcher",
+                "tourism_searcher": "tourism_searcher",
+    })
     
-    tools = [search_amadeus_flights]
-    assistant_runnable = primary_assistant_prompt | llm.bind_tools(tools)
+    builder.add_conditional_edges("flight_searcher", route_flight_search, {
+        "execute_flight_search": "execute_flight_search",
+        "user_input": "user_input"
+    })
+    builder.add_edge("execute_flight_search", "flight_searcher")
+    builder.add_edge("user_input", "supervisor")
     
-    builder = StateGraph(State)
-    builder.add_node("assistant", Assistant(assistant_runnable))
-    builder.add_node("tools", create_tool_node_with_fallback(tools))
-    builder.add_edge(START, "assistant")
-    builder.add_conditional_edges("assistant", tools_condition)
-    builder.add_edge("tools", "assistant")
-    
-    memory = SqliteSaver.from_conn_string(":memory:")
-    graph = builder.compile(checkpointer=memory)
-
-    config = {
-        "configurable": {
-            "thread_id": 1,
-        }
-    }
-    question = "Quais são as melhores opções de passagens aéreas saindo de VIX para São Paulo em 05/08/2024, eu posso chegar em qualquer aeroporto de São Paulo"
-    
-    _printed = set()
-    events = graph.stream(
-        {"messages": ("user", question)}, config, stream_mode="values"
-    )
-    for event in events:
-        _print_event(event, _printed)
-    
-    try:
-        display(Image(graph.get_graph(xray=True).draw_mermaid_png()))
-    except Exception:
-        pass
-
+    # Use AsyncSqliteSaver for async operations
+    async with AsyncSqliteSaver.from_conn_string("checkpoints.db") as memory:
+        graph = builder.compile(checkpointer=memory)
+        thread = {"configurable": {"thread_id": "1"}}
+        
+        # Stream events asynchronously with version specified
+        async for event in graph.astream_events({"messages": []}, thread, version='v2'):
+            pass
+            # print("Event received:", event)
+            
+            # Handle specific event types
+            #if event['event'] == 'on_chain_end':
+            #    print("Chain processing completed with output:", event['data'])
+            #elif event['event'] == 'on_chain_start':
+            #    print("Chain processing started.")
